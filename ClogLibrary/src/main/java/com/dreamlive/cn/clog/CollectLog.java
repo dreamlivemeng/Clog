@@ -22,9 +22,11 @@ import android.text.TextUtils;
 import android.util.Log;
 
 /**
- * 捕获android程序崩溃日志<br>
- * UncaughtException处理类,当程序发生Uncaught异常的时候,有该类来接管程序.<br>
- * 将错误日志写入到sd卡,默认为Android/data/包名/files/logs下面，放这个目录下主要是为了不需要权限
+ * collect android  crashes the log<br>
+ * UncaughtException class,When the program occurs Uncaught exception, there are such procedures to take over.<br>
+ * This is a tool that write the Android crash log to the sd card.
+ * The default is Android / data / package name / files / logs below
+ * put in this path, do not need any permissions
  * <p>
  * Created by dreamlivemeng on 2014/11/11.
  */
@@ -33,51 +35,54 @@ public class CollectLog implements UncaughtExceptionHandler {
 
     public static final String TAG = CollectLog.class.getCanonicalName();
 
-    // 系统默认的UncaughtException处理类 
+    //The system default UncaughtException handler class
     private UncaughtExceptionHandler mDefaultHandler;
-    // CrashHandler实例 
+    //CrashHandler instance
     private static CollectLog INSTANCE = new CollectLog();
-    // 程序的Context对象 
+    //Context
     private Context mContext;
-    // 用来存储设备信息和异常信息 
+    //Used to store device information and exception information
     private Map<String, String> infos = new HashMap<String, String>();
 
-    // 用于格式化日期,作为日志文件名的一部分 
+    //Used to format the date as part of the log file name
     private DateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
-    //传入的路径
+    //Custom the path
     private String filePath = "";
 
     /**
-     * 保证只有一个实例
+     *
      */
     private CollectLog() {
     }
 
+
     /**
-     * 获取实例 ，单例模式
+     * Get instances, singleton pattern
+     *
+     * @return instances
      */
     public static CollectLog getInstance() {
         return INSTANCE;
     }
 
     /**
-     * 初始化
+     * initialization
      *
-     * @param context
+     * @param context context
      */
     public void init(Context context) {
         mContext = context;
-        // 获取系统默认的UncaughtException处理器 
+        //Gets the system's default UncaughtException handler
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
-        // 设置该CrashHandler为程序的默认处理器 
+        //Set the CrashHandler as the default handler for the program
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
 
     /**
-     * 初始化
+     * initialization ,Can custom the path
      *
-     * @param context
-     * @param path
+     * @param context context
+     * @param path    custom the path
      */
     public void init(Context context, String path) {
         init(context);
@@ -85,12 +90,12 @@ public class CollectLog implements UncaughtExceptionHandler {
     }
 
     /**
-     * 当UncaughtException发生时会转入该函数来处理
+     * When the UncaughtException occurs, it is passed to the function to process
      */
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
         if (!handleException(ex) && mDefaultHandler != null) {
-            // 如果用户没有处理则让系统默认的异常处理器来处理 
+            // If the user does not deal with the system is the default exception handler to handle
             mDefaultHandler.uncaughtException(thread, ex);
         } else {
             try {
@@ -98,48 +103,34 @@ public class CollectLog implements UncaughtExceptionHandler {
             } catch (InterruptedException e) {
 //                Log.e(TAG, "error : ", e);
             }
-            // 退出程序 
+            // exit app
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(1);
         }
     }
 
     /**
-     * 自定义错误处理,收集错误信息 发送错误报告等操作均在此完成.
+     * Custom error handling, error message collection error reporting and other operations are completed here.
      *
-     * @param ex
-     * @return true:如果处理了该异常信息;否则返回false.
+     * @param ex Throwable
+     * @return If the exception is processed return true; false otherwise.
      */
     private boolean handleException(Throwable ex) {
         if (ex == null) {
             return false;
         }
-/*
-    因为权限问题，不建议使用Toast弹出
-        // 使用Toast来显示异常信息 
-        new Thread() {
-            @Override
-            public void run() {
-                Looper.prepare();
-                Toast.makeText(mContext, "很抱歉，程序出现异常。", Toast.LENGTH_LONG)
-                        .show();
-                Looper.loop();
-            }
-        }.start();
-*/
-        // 收集设备参数信息 
+        // Collect device parameter information
         collectDeviceInfo(mContext);
-        // 保存日志文件 
+        //Save the log file
         String str = saveCrashInfo2File(ex);
         Log.e(TAG, str);
-
         return false;
     }
 
     /**
-     * 收集设备参数信息
+     * Collect device parameter information
      *
-     * @param ctx
+     * @param ctx context
      */
     public void collectDeviceInfo(Context ctx) {
         try {
@@ -162,7 +153,6 @@ public class CollectLog implements UncaughtExceptionHandler {
             try {
                 field.setAccessible(true);
                 infos.put(field.getName(), field.get(null).toString());
-                //打印收集的参数
 //                Log.d(TAG, field.getName() + " : " + field.get(null));
             } catch (Exception e) {
 //                Log.e(TAG, "an error occured when collect crash info", e);
@@ -171,10 +161,10 @@ public class CollectLog implements UncaughtExceptionHandler {
     }
 
     /**
-     * 保存错误信息到文件中
+     * Save the error message to a file
      *
-     * @param ex
-     * @return 返回文件名称, 便于将文件传送到服务器
+     * @param ex Throwable
+     * @return Returns the name of the file to facilitate transfer of the file to the server
      */
     private String saveCrashInfo2File(Throwable ex) {
 
@@ -194,7 +184,7 @@ public class CollectLog implements UncaughtExceptionHandler {
             if (!TextUtils.isEmpty(filePath)) {
                 File files = new File(filePath);
                 if (!files.exists()) {
-                    //创建目录
+                    //Create a directory
                     files.mkdirs();
                 }
                 file = new File(filePath + File.separator + fileName);
@@ -209,13 +199,15 @@ public class CollectLog implements UncaughtExceptionHandler {
             fos.close();
             return fileName;
         } catch (Exception e) {
-//            Log.e(TAG, "an error occured while writing file...", e);
         }
         return null;
     }
 
     /**
-     * 获取捕捉到的异常的字符串
+     * Gets the string of the caught exception
+     *
+     * @param tr throwable
+     * @return the string of the caught exception
      */
     public static String getStackTraceString(Throwable tr) {
         try {
