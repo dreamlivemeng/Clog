@@ -11,14 +11,13 @@ This is a tool that write the Android crash log to the sd card.
 * Android Studio
 	
 	```
-	compile 'com.zhy:okhttputils:2.6.2'
+	compile ''
 	```
 	
 * Eclipse
 	
-	下载最新jar:[okhttputils-2\_6\_2.jar](okhttputils-2_6_2.jar?raw=true)
 
-	注：需要同时导入okhttp和okio的jar，下载见：[https://github.com/square/okhttp](https://github.com/square/okhttp).
+
 
 
 ### 使用方法1
