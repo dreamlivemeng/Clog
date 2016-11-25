@@ -6,6 +6,15 @@ This is a tool that write the Android crash log to the sd card.
 
 目前对应Clog版本`0.0.1`.
 
+## 导入方法
+
+* Android Studio
+	
+	```
+	 compile 'com.dreamlive.cn.clog:ClogLibrary:0.0.1'
+	```
+	
+
 
 
 ### 使用方法1
