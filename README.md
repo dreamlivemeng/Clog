@@ -22,7 +22,8 @@ This is a tool that write the Android crash log to the sd card.
 
 在application的oncreate（）配置
 ```java
-//android6.0也不需要动态sd权限， 将错误日志写入到sd卡,默认为Android/data/包名/files/logs下面，放这个目录下主要是为了不需要权限
+  //android6.0也不需要动态sd权限，
+  //将错误日志写入到sd卡,默认为Android/data/包名/files/logs下面放这个目录下主要是为了不需要权限
   CollectLog clog = CollectLog.getInstance();
   clog.init(this);
 
@@ -32,7 +33,8 @@ This is a tool that write the Android crash log to the sd card.
 自定义日志存放路径
 在application的oncreate（）配置
 ```java
-//自定义日志存放路径,这儿示例就只传了sd根目录下的dreamlivemeng(/storage/emulated/0/dreamlivemeng)，希望把错误日志写到这个目录
+   //自定义日志存放路径,
+   //这儿示例就只传了sd根目录下的dreamlivemeng(/storage/emulated/0/dreamlivemeng)，把错误日志写到这个目录下
   CollectLog clog = CollectLog.getInstance();
   clog.init(this, Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "dreamlivemeng");
 
