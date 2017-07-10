@@ -197,7 +197,7 @@ public class CollectLog implements UncaughtExceptionHandler {
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(sb.toString().getBytes());
             fos.close();
-            return fileName;
+            return file.getAbsolutePath();
         } catch (Exception e) {
         }
         return null;
