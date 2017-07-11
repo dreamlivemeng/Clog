@@ -5,7 +5,7 @@ sudo: false
 env:
   global:
       - ANDROID_API_LEVEL=25
-      - ANDROID_BUILD_TOOLS_VERSION=25.0.2
+      - ANDROID_BUILD_TOOLS_VERSION=25.0.0
       - ANDROID_ABI=armeabi-v7a
       - ANDROID_TAG=google_apis
       - ADB_INSTALL_TIMEOUT=20 # minutes (2 minutes by default)
@@ -47,4 +47,4 @@ script:
   - ./gradlew :app:createDebugAndroidTestCoverageReport --info --stacktrace
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - b ash <(curl -s https://codecov.io/bash)
