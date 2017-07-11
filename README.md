@@ -1,6 +1,7 @@
 # Clog  
 
-[![](https://jitpack.io/v/dreamlivemeng/Clog.svg)](https://jitpack.io/#dreamlivemeng/Clog)
+[![](https://jitpack.io/v/dreamlivemeng/Clog.svg)](https://jitpack.io/#dreamlivemeng/Clog) 
+[![](https://img.shields.io/badge/%E4%BD%9C%E8%80%85-dreamlivemeng-blue.svg)](http://blog.csdn.net/dreamlivemeng)
 
 
 这是一个将android 崩溃日志写入到sd卡得工具类。  
