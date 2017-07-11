@@ -12,7 +12,3 @@ android:
   licenses:
       - android-sdk-license-.+
       - '.+'
-
-
-script:
-  - ./gradlew assembleRelease
