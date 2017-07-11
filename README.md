@@ -1,5 +1,8 @@
 # Clog  
 
+[![](https://jitpack.io/v/dreamlivemeng/Clog.svg)](https://jitpack.io/#dreamlivemeng/Clog)
+
+
 这是一个将android 崩溃日志写入到sd卡得工具类。  
 This is a tool that write the Android crash log to the sd card.  
 最低版本android2.2(8),已经适配到android7.0。  
