@@ -21,3 +21,5 @@ before_install:
 
 script:
   - ./gradlew assembleRelease
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
