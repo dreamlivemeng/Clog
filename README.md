@@ -24,12 +24,13 @@ allprojects {
 		maven { url "https://jitpack.io" }
 	}
 }
+```  
+
+```  
+	 compile 'com.dreamlive.cn.clog:ClogLibrary:1.0.2'
 ```
 
-	```
-	 compile 'com.dreamlive.cn.clog:ClogLibrary:1.0.2'
-	```
-	
+
 更多版本号请看[这儿](https://github.com/dreamlivemeng/Clog/releases)
 
 
