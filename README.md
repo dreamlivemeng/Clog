@@ -29,7 +29,11 @@ allprojects {
 在module的build.gradle里面添加
 
 ```  
-compile 'com.dreamlive.cn.clog:ClogLibrary:1.0.2'
+compile 'com.dreamlive.cn.clog:ClogLibrary:0.0.1'
+```
+或者
+```  
+compile 'com.github.dreamlivemeng:Clog:1.0.2'
 ```
 
 
