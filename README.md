@@ -1,8 +1,6 @@
 # Clog  
 
 [![](https://jitpack.io/v/dreamlivemeng/Clog.svg)](https://jitpack.io/#dreamlivemeng/Clog) 
-[![Build Status](https://travis-ci.org/dreamlivemeng/Clog.svg?branch=master)](https://travis-ci.org/dreamlivemeng/Clog)
-[![CircleCI](https://circleci.com/gh/dreamlivemeng/Clog.svg?style=svg)](https://circleci.com/gh/dreamlivemeng/Clog)
 [![API](https://img.shields.io/badge/API-8%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=8)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e1549d917e304d998cc9c06868464859)](https://www.codacy.com/app/dreamlivemeng/Clog?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dreamlivemeng/Clog&amp;utm_campaign=Badge_Grade)
 [![](https://img.shields.io/badge/%E4%BD%9C%E8%80%85-dreamlivemeng-blue.svg)](http://blog.csdn.net/dreamlivemeng)
